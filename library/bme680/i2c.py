@@ -1,4 +1,3 @@
-import sys
 
 try:
     from machine import I2C
@@ -9,7 +8,16 @@ except ImportError:
 
 class I2CAdapter(I2C):
     """ Adds some of the SMBus I2c methods to the micropython I2c class,
-        for enhanced compatibility """
+        for enhanced compatibility. 
+
+	Use it like you would the machine.I2C class: 
+	
+	from bme680.i2c import I2CAdapter as I2C
+	
+	i2c_dev = I2C(1, pins=('G15','G10'), baudrate=100000)
+        sensor = bme680.BME680(i2c_device=i2c)
+	
+	"""
 
     def read_byte_data(self, addr, register):
         """ Read a single byte from register of device at addr
