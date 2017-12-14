@@ -32,7 +32,7 @@ class I2CAdapter(I2C):
     def write_byte_data(self, addr, register, data):
         """ Write a single byte of data to register of device at addr
             Returns None """
-        return self.writeto_mem(addr, register, data)
+        return self.writeto_mem(addr, register, bytes([data]))
 
     def write_i2c_block_data(self, addr, register, data):
         """ Write multiple bytes of data to register of device at addr
